@@ -1,0 +1,10 @@
+<nb-card>
+  <nb-card-header>Delete</nb-card-header>
+  <nb-card-body>
+      <label class="label">Are you sure?</label>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton status="primary" (click)="cancel('No')" class="primary-button">No</button>
+    <button nbButton status="danger"  (click)="submit('Yes')" class="danger-button">Yes</button>
+  </nb-card-footer>
+</nb-card>

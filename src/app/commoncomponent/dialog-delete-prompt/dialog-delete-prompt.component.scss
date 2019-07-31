@@ -1,0 +1,15 @@
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+  .label {
+    width: 250px;
+  }
+
+  .danger-button {
+    margin-left: 20px;
+  }
+  .primary-button {
+    margin-left: 45px;
+  }
+
+}
