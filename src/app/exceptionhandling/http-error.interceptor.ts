@@ -54,9 +54,9 @@ import
             } 
             else {
               // server-side error
-              this.title = `Error: ${error.error.status}\n`;
-              if (Object.keys(error.error.errors).length>0)
+              if ('errors' in error.error)
               {
+                this.title = `Error: ${error.error.status}\n`;
                 for (var i=0;i<Object.keys(error.error.errors).length;i++)
                 {
                   var msg=error.error.errors[i];
@@ -66,7 +66,8 @@ import
               }
               else
               {
-                var msg : any =error.message;
+                this.title = `Error: ${error.statusText}\n`;
+                var msg : any =error.error.message;
                 this.content = msg;
                 this.showToast(this.status,this.title,this.content);
               }

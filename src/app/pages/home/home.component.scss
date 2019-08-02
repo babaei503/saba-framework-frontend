@@ -1,0 +1,43 @@
+.bg {
+  /* The image used */
+  background-image: url("../../../assets/images/Tehran-Iran.jpg");
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 70vh;
+}
+.card1 {
+  margin-top: -12%;
+  width: 170px;
+  align-items: center;
+  opacity: 0.9;
+  margin-inline-start: 3%;
+}
+.label {
+  margin-inline-start: 5px;
+}
+.button {
+  margin-inline-start: 20%;
+}
+.title {
+  margin-inline-start: 46%;
+  margin-top: 11%;
+}
+.DATE {
+      font-size: 85%;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #bbb;
+      font-size: 10px;
+      font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+      font-weight: 100;	
+}
+.HEADLINE{
+  font: bold 30px "Century Schoolbook", Georgia, Times, serif;
+	color: rgb(255, 255, 255);
+	line-height: 90%;
+	margin: .2em 0 .4em 0;
+  letter-spacing: -2px;
+  text-align: center;
+}

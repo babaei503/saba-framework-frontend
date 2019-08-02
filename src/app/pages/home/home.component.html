@@ -1,13 +1,18 @@
-<div *ngIf="info.token; else loggedOut">
-  <h5 class="text-primary">Your Information</h5>
-  <p>
-    <strong>Username:</strong> {{info.username}}<br/>
-    <strong>Roles:</strong> {{info.authorities}}<br />
-    <strong>Token:</strong> {{info.token}}.
-  </p>
-  <button class="btn btn-secondary" (click)="logout()">Logout</button>
+<div class="card  bg" >
+  <div class="card-body"> 
+    <div>
+        <div class="title">
+            <label class="HEADLINE">Millions of jobs and people hiring</label>
+        </div>
+        <div>
+            <nb-card class="card1">
+              <nb-card-header>Jobs</nb-card-header>
+              <nb-card-body>
+                  <label class="label">Find a job in Tehran</label>
+                  <button class="btn btn-primary button" >Find</button>
+              </nb-card-body>
+            </nb-card>
+        </div>
+    </div>         
+  </div>
 </div>
-
-<ng-template #loggedOut>
-  Please login.
-</ng-template>

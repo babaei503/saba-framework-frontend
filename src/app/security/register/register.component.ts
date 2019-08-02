@@ -6,7 +6,7 @@ import { SignUpInfo } from '../auth/signup-info';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   form: any = {};
@@ -26,7 +26,8 @@ export class RegisterComponent implements OnInit {
       this.form.name,
       this.form.username,
       this.form.email,
-      this.form.password);
+      this.form.password,
+      );
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
@@ -36,7 +37,7 @@ export class RegisterComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.errorMessage = error.error.message;
+        //this.errorMessage = error;
         this.isSignUpFailed = true;
       }
     );

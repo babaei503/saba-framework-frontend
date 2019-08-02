@@ -57,7 +57,7 @@ const routes: Routes = [{
     loadChildren: './../security/security.module#SecurityModule',
   },{
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full',
   }, {
     path: '**',
