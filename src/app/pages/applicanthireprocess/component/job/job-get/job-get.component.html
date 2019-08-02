@@ -1,0 +1,51 @@
+<div class="row"  *ngFor="let job of jobs">
+        <div class="col-md-9">
+          <nb-card>
+            <nb-card-header>
+                <img src="../../../../../../assets/images/jobtitleicon.png" width="80px" height="80px"/>
+                {{ job.job_title }}
+            </nb-card-header>
+            <nb-card-body>
+              <form>
+                <div class="form-group row">              
+                  <label class="col-sm-6 col-form-label titles">
+                    <img src="../../../../../../assets/images/companyicon.png" width="25px" height="25px"/>
+                    Company: {{ job.job_company }}
+                  </label>
+                  <label class="col-sm-6 col-form-label titles" >
+                    <img src="../../../../../../assets/images/locationicon.png" width="25px" height="25px"/> 
+                    Location: {{ job.job_location }}
+                  </label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label titles">
+                        <img src="../../../../../../assets/images/employmenticon.png" width="25px" height="25px"/>
+                        Employment: {{ job.job_employment }}
+                    </label>
+                    <label class="col-sm-6 col-form-label titles">
+                        <img src="../../../../../../assets/images/jobfunctionicon.png" width="25px" height="25px"/>
+                        Job Function: {{ job.job_jobfunction }}
+                    </label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-8 col-form-label titles">
+                        <img src="../../../../../../assets/images/industryicon.png" width="25px" height="25px"/>
+                        Industry: {{ job.job_industry }}
+                    </label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-12 col-form-label">
+                        <img src="../../../../../../assets/images/descicon.png" width="25px" height="25px"/>
+                        {{ job.job_description }}
+                    </label>
+                </div>                
+                <div class="form-group row">
+                  <div class="offset-sm-5 col-sm-7">
+                    <button class="btn btn-primary" [routerLink]="['/pages/hireprocess/applicant/create', job._id]">Apply</button>
+                  </div>
+                </div>
+              </form>
+            </nb-card-body>
+          </nb-card>
+        </div>
+</div>

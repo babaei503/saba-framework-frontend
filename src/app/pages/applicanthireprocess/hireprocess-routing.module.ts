@@ -5,6 +5,7 @@ import { HireprocessComponent } from './hireprocess.component';
 import { GstGetComponent } from './component/applicant/gst-get/gst-get.component';
 import { GstAddComponent } from './component/applicant/gst-add/gst-add.component';
 import { GstEditComponent } from './component/applicant/gst-edit/gst-edit.component';
+import { JobgetComponent } from './component/job/job-get/job-get.component';
 
 const routes: Routes = [{
   path: '',
@@ -21,6 +22,10 @@ const routes: Routes = [{
     {
       path: 'applicant/edit/:id',
       component: GstEditComponent
+    },
+    {
+      path: 'jobs/:location',
+      component: JobgetComponent,
     },
   ],
 }];
@@ -41,5 +46,7 @@ export const routedComponents = [
   HireprocessComponent,
   GstAddComponent,
   GstEditComponent,
-  GstGetComponent
+  GstGetComponent,
+  GstEditComponent,
+  JobgetComponent,
 ];

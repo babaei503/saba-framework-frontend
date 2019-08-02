@@ -20,6 +20,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-compose',
     children: [
       {
+        title: 'jobs',
+        link: '/pages/hireprocess/jobs/all',
+      },
+      {
         title: 'Applicants',
         link: '/pages/hireprocess/applicant',
       },
