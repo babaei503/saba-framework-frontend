@@ -24,7 +24,7 @@ const routes: Routes = [{
       component: GstEditComponent
     },
     {
-      path: 'jobs/:location',
+      path: 'jobs/:location/:title',
       component: JobgetComponent,
     },
   ],

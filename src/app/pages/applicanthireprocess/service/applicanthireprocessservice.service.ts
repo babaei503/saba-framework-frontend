@@ -55,40 +55,12 @@ export class ApplicantHireProcessService {
             ))),);
   }
 
-  getOpenJobsWithDetailsPaging(page,itemcount) {
+  //get list of open jobs by location or title
+  //location and title can set to all
+  getOpenJobsWithDetailsPaging(location,title,page,itemcount) {
     return this
            .http
-           .get(`${this.uri}/get-open-job-list-with-paging/${page}/${itemcount}`).pipe(
-            map((data: any[]) => data.map((item: any) => new Job(
-              item._id=item.id,
-              item.job_code=item.code,
-              item.job_title=item.title,
-              item.job_company=item.company,
-              item.job_location=item.location,
-              item.job_employment=item.employment,
-              item.job_jobfunction=item.jobfunction,
-              item.job_industry=item.industry,
-              item.job_description=item.description,
-              item.job_open=item.open,
-            ))),);
-  }
-
-  getOpenJobsWithDetailsByLocation(location) {
-    return this
-           .http
-           .get(`${this.uri}/get-open-job-list-by-location/${location}`).pipe(
-            map((data: any[]) => data.map((item: any) => new Job(
-              item._id=item.id,
-              item.job_code=item.code,
-              item.job_title=item.title,
-              item.job_company=item.company,
-              item.job_location=item.location,
-              item.job_employment=item.employment,
-              item.job_jobfunction=item.jobfunction,
-              item.job_industry=item.industry,
-              item.job_description=item.description,
-              item.job_open=item.open,
-            ))),);
+           .get(`${this.uri}/get-open-job-list-by-location-title/${location}/${title}/${page}/${itemcount}`);
   }
 
   editApplicant(id) {

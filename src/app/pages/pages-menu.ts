@@ -21,7 +21,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'jobs',
-        link: '/pages/hireprocess/jobs/all',
+        link: '/pages/hireprocess/jobs/all/all',
       },
       {
         title: 'Applicants',

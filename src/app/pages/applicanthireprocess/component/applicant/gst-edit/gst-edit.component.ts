@@ -26,7 +26,7 @@ export class GstEditComponent implements OnInit {
   status: NbToastStatus = NbToastStatus.WARNING;
 
   title = 'Error';
-  content = `Error`;
+  content = 'Error';
 
   applicant: Applicant;//You can define models as any(with no problem)
   selectedjobid: BigInteger;
