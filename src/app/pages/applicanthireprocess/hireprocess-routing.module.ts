@@ -16,7 +16,7 @@ const routes: Routes = [{
       component: GstGetComponent,
     },
     {
-      path: 'applicant/create',
+      path: 'applicant/create/:jobid',
       component: GstAddComponent
     },
     {

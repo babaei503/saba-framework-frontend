@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { ApplicantHireProcessService } from '../../../service/applicanthireprocessservice.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import Applicant from '../../../model/Applicant';
 import Job from '../../../model/Job';
 import { NbGlobalPhysicalPosition, NbGlobalPosition, NbToastrService } from '@nebular/theme';
@@ -26,16 +26,20 @@ export class GstAddComponent implements OnInit {
   status: NbToastStatus = NbToastStatus.WARNING;
 
   title = 'Error';
-  content = `Error`;
+  content = 'Error';
 
   applicant: Applicant;
-  jobs: Job[];
+
   angForm: FormGroup;
+
   constructor(
+    private route: ActivatedRoute,
     private fb: FormBuilder, 
     private bs: ApplicantHireProcessService, 
     private router: Router, 
     private toastrService: NbToastrService) {
+    this.applicant = new Applicant();
+    this.applicant.applicant_job = new Job();
     this.createForm();
   }
 
@@ -44,19 +48,31 @@ export class GstAddComponent implements OnInit {
       applicant_name: ['', Validators.compose([Validators.required, Validators.minLength(3),Validators.maxLength(50)])],
       applicant_email: ['', Validators.compose([Validators.required, Validators.email])],
       applicant_phonenumber:['',Validators.pattern('(^$|[0-9]{11})')],
-      applicant_job:[Job, Validators.required]
     });
   }
 
-  addApplicant(applicant_name, applicant_email, applicant_phonenumber, applicant_job) {
+  ngOnInit() {
 
-    this.bs.addApplicant(applicant_name, applicant_email, applicant_phonenumber, applicant_job).subscribe(res => 
+    this.route.params.subscribe(params => {
+
+      this.bs
+      .getJobByID(params['jobid'])
+      .subscribe((data: Job) => {
+        this.applicant.applicant_job = data;
+        console.log(data);
+      });
+ 
+    });  
+
+  }
+
+  addApplicant(applicant_name, applicant_email, applicant_phonenumber) {
+
+    this.bs.addApplicant(applicant_name, applicant_email, applicant_phonenumber, this.applicant.applicant_job).subscribe(res => 
       { 
         //make toast message
         this.title = `You applied for`;
-        // var jsonres = JSON.parse(JSON.stringify(res));
-        // this.content = jsonres.body;
-        this.content = `Job Title: ${applicant_job.job_title}`;
+        this.content = `Job Title: ${this.applicant.applicant_job.job_title}`;
         this.status = NbToastStatus.SUCCESS;
         this.showToast(this.status,this.title,this.content);
         this.router.navigate(['/pages/home']);
@@ -67,16 +83,6 @@ export class GstAddComponent implements OnInit {
         console.log(error,"error");
       });
        
-  }
-
-  ngOnInit() {
-    this.applicant = new Applicant();
-    this.bs
-    .getJobs()
-    .subscribe((data: Job[]) => {
-      this.jobs = data;
-      console.log(data);
-    });
   }
 
   private showToast(type: NbToastStatus, title: string, body: string) {

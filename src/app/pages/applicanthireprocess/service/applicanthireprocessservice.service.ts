@@ -47,12 +47,30 @@ export class ApplicantHireProcessService {
   getJobs() {
     return this
            .http
-           .get(`${this.uri}/get-job-list`).pipe(
-            map((data: any[]) => data.map((item: any) => new Job(
+           .get(`${this.uri}/get-job-list/0/1000`).pipe(  //temp uri- update it later
+            map((data: any[]) => data["content"].map((item: any) => new Job(
               item._id=item.id,
               item.job_code=item.code,
               item.job_title=item.title,
             ))),);
+  }
+
+  getJobByID(jobid) {
+    return this
+           .http
+           .get(`${this.uri}/get-job-by-id/${jobid}`).pipe(
+            map((item: any) => new Job(
+              item._id=item.id,
+              item.job_code=item.code,
+              item.job_title=item.title,
+              item.job_company=item.company,
+              item.job_location=item.location,
+              item.job_employment=item.employment,
+              item.job_jobfunction=item.jobfunction,
+              item.job_industry=item.industry,
+              item.job_description=item.description,
+              item.job_open=item.open,
+            )));
   }
 
   //get list of open jobs by location or title

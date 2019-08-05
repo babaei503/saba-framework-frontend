@@ -24,12 +24,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/hireprocess/jobs/all/all',
       },
       {
-        title: 'Applicants',
-        link: '/pages/hireprocess/applicant',
+        title: 'Telephone interview',
+        link: '/pages/hireprocess/telephoneinterview',
       },
       {
-        title: 'Apply',
-        link: '/pages/hireprocess/applicant/create',
+        title: 'Applicants',
+        link: '/pages/hireprocess/applicant',
       },
     ],
   },

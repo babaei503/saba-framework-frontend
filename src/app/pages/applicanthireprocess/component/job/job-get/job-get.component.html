@@ -53,12 +53,14 @@
                         Industry: {{ job.job_industry }}
                     </label>
                 </div>
+                <hr/>
                 <div class="form-group row">
                     <label class="col-sm-12 col-form-label">
                         <img src="../../../../../../assets/images/descicon.png" width="25px" height="25px"/>
                         {{ job.job_description }}
                     </label>
-                </div>                
+                </div> 
+                <hr/>               
                 <div class="form-group row">
                   <div class=" offset-sm-5 col-sm-7">
                     <button class="btn btn-primary" [routerLink]="['/pages/hireprocess/applicant/create', job._id]">Apply</button>
