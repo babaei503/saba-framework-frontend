@@ -6,6 +6,7 @@ import { GstGetComponent } from './component/applicant/gst-get/gst-get.component
 import { GstAddComponent } from './component/applicant/gst-add/gst-add.component';
 import { GstEditComponent } from './component/applicant/gst-edit/gst-edit.component';
 import { JobgetComponent } from './component/job/job-get/job-get.component';
+import { TiGetComponent } from './component/telephoneinterview/ti-get/ti-get.component';
 
 const routes: Routes = [{
   path: '',
@@ -26,6 +27,10 @@ const routes: Routes = [{
     {
       path: 'jobs/:location/:title',
       component: JobgetComponent,
+    },
+    {
+      path: 'telephoneinterview',
+      component: TiGetComponent,
     },
   ],
 }];
@@ -49,4 +54,5 @@ export const routedComponents = [
   GstGetComponent,
   GstEditComponent,
   JobgetComponent,
+  TiGetComponent,
 ];

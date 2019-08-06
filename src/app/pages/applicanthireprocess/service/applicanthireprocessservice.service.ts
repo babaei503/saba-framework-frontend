@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders  } from '@angular/common/http';
 import Applicant from '../model/Applicant';
 import Job from '../model/Job';
+import TaskRef from '../model/TaskRef';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -12,6 +13,12 @@ export class ApplicantHireProcessService {
   uri = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) { }
+
+
+
+  //================================================================================
+  //Applicant region
+  //================================================================================
 
   addApplicant(applicant_name, applicant_email, applicant_phonenumber, applicant_job) {
 
@@ -42,43 +49,6 @@ export class ApplicantHireProcessService {
                 item.job.title
               )
             ))),);
-  }
-
-  getJobs() {
-    return this
-           .http
-           .get(`${this.uri}/get-job-list/0/1000`).pipe(  //temp uri- update it later
-            map((data: any[]) => data["content"].map((item: any) => new Job(
-              item._id=item.id,
-              item.job_code=item.code,
-              item.job_title=item.title,
-            ))),);
-  }
-
-  getJobByID(jobid) {
-    return this
-           .http
-           .get(`${this.uri}/get-job-by-id/${jobid}`).pipe(
-            map((item: any) => new Job(
-              item._id=item.id,
-              item.job_code=item.code,
-              item.job_title=item.title,
-              item.job_company=item.company,
-              item.job_location=item.location,
-              item.job_employment=item.employment,
-              item.job_jobfunction=item.jobfunction,
-              item.job_industry=item.industry,
-              item.job_description=item.description,
-              item.job_open=item.open,
-            )));
-  }
-
-  //get list of open jobs by location or title
-  //location and title can set to all
-  getOpenJobsWithDetailsPaging(location,title,page,itemcount) {
-    return this
-           .http
-           .get(`${this.uri}/get-open-job-list-by-location-title/${location}/${title}/${page}/${itemcount}`);
   }
 
   editApplicant(id) {
@@ -134,6 +104,77 @@ export class ApplicantHireProcessService {
       "job":job
     };
     return applicant;  
+  }
+
+  //================================================================================
+  //Jobs region
+  //================================================================================
+
+  getJobs() {
+    return this
+           .http
+           .get(`${this.uri}/get-job-list/0/1000`).pipe(  //temp uri- update it later
+            map((data: any[]) => data["content"].map((item: any) => new Job(
+              item._id=item.id,
+              item.job_code=item.code,
+              item.job_title=item.title,
+            ))),);
+  }
+
+  getJobByID(jobid) {
+    return this
+           .http
+           .get(`${this.uri}/get-job-by-id/${jobid}`).pipe(
+            map((item: any) => new Job(
+              item._id=item.id,
+              item.job_code=item.code,
+              item.job_title=item.title,
+              item.job_company=item.company,
+              item.job_location=item.location,
+              item.job_employment=item.employment,
+              item.job_jobfunction=item.jobfunction,
+              item.job_industry=item.industry,
+              item.job_description=item.description,
+              item.job_open=item.open,
+            )));
+  }
+
+  //get list of open jobs by location or title
+  //location and title can set to all
+  getOpenJobsWithDetailsPaging(location,title,page,itemcount) {
+    return this
+           .http
+           .get(`${this.uri}/get-open-job-list-by-location-title/${location}/${title}/${page}/${itemcount}`);
+  }
+
+  //================================================================================
+  //Process region
+  //================================================================================
+
+  getPhoneInterviewTasks() {
+    return this
+           .http
+           .get(`${this.uri}/get-active-phoneinterview-tasks`).pipe( 
+            map((data: any[]) => data.map((item: any) => new TaskRef(
+              item.taskid=item.taskid,
+              item.name=item.name,	
+              item.assignee=item.assignee,	
+              item.categury=item.categury,
+              item.claimtime=item.claimtime,	
+              item.createtime=item.createtime,	
+              item.description=item.description,	
+              item.duodate=item.duodate,	
+              item.priority=item.priority,	
+              item.processdefinitionid=item.processdefinitionid,
+            ))),);
+  }
+
+  claim(taskid){
+
+    return this
+           .http
+           .get(`${this.uri}/claim-phoneinterview-task/${taskid}`);
+
   }
 
 }  
