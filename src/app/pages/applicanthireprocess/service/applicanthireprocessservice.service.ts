@@ -159,11 +159,29 @@ export class ApplicantHireProcessService {
               item.taskid=item.taskid,
               item.name=item.name,	
               item.assignee=item.assignee,	
-              item.categury=item.categury,
+              item.category=item.category,
               item.claimtime=item.claimtime,	
               item.createtime=item.createtime,	
               item.description=item.description,	
-              item.duodate=item.duodate,	
+              item.duedate=item.duedate,	
+              item.priority=item.priority,	
+              item.processdefinitionid=item.processdefinitionid,
+            ))),);
+  }
+
+  getPhoneIntviewTaskAssignee() {
+    return this
+           .http
+           .get(`${this.uri}/get-active-phoneinterviewtasks-assignee`).pipe( 
+            map((data: any[]) => data.map((item: any) => new TaskRef(
+              item.taskid=item.taskid,
+              item.name=item.name,	
+              item.assignee=item.assignee,	
+              item.category=item.category,
+              item.claimtime=item.claimtime,	
+              item.createtime=item.createtime,	
+              item.description=item.description,	
+              item.duedate=item.duedate,	
               item.priority=item.priority,	
               item.processdefinitionid=item.processdefinitionid,
             ))),);
@@ -175,6 +193,48 @@ export class ApplicantHireProcessService {
            .http
            .get(`${this.uri}/claim-phoneinterview-task/${taskid}`);
 
+  }
+
+  getTaskByIDAssignee(taskid) {
+    return this
+           .http
+           .get(`${this.uri}/get-task-by-id-assignee/${taskid}`).pipe( 
+            map((item: any) => new TaskRef(
+              item.taskid=item.taskid,
+              item.name=item.name,	
+              item.assignee=item.assignee,	
+              item.category=item.category,
+              item.claimtime=item.claimtime,	
+              item.createtime=item.createtime,	
+              item.description=item.description,	
+              item.duedate=item.duedate,	
+              item.priority=item.priority,	
+              item.processdefinitionid=item.processdefinitionid,
+            )));
+  }
+
+  getProcessVarsByTaskIDAssignee(taskid) {
+    return this
+           .http
+           .get(`${this.uri}/get-hireprocvars-by-taskid-assignee/${taskid}`).pipe(
+            map((data: any) => new Applicant(
+               data.applicant.id,
+               data.applicant.name,
+               data.applicant.email,
+               data.applicant.phoneNumber,
+               new Job(
+                  data.applicant.job.id,
+                  data.applicant.job.code,
+                  data.applicant.job.title,
+                  data.applicant.job.company,
+                  data.applicant.job.location,
+                  data.applicant.job.employment,
+                  data.applicant.job.jobfunction,
+                  data.applicant.job.industry,
+                  data.applicant.job.description,
+                  data.applicant.job.open,
+               )
+            )));
   }
 
 }  

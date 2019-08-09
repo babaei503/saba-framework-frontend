@@ -7,6 +7,7 @@ import { GstAddComponent } from './component/applicant/gst-add/gst-add.component
 import { GstEditComponent } from './component/applicant/gst-edit/gst-edit.component';
 import { JobgetComponent } from './component/job/job-get/job-get.component';
 import { TiGetComponent } from './component/telephoneinterview/ti-get/ti-get.component';
+import { TiDoComponent } from './component/telephoneinterview/ti-do/ti-do.component';
 
 const routes: Routes = [{
   path: '',
@@ -32,6 +33,11 @@ const routes: Routes = [{
       path: 'telephoneinterview',
       component: TiGetComponent,
     },
+    {
+      path: 'dotitask/:taskid',
+      component: TiDoComponent,
+    },
+    
   ],
 }];
 
@@ -55,4 +61,5 @@ export const routedComponents = [
   GstEditComponent,
   JobgetComponent,
   TiGetComponent,
+  TiDoComponent,
 ];

@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card accent="info" size="tiny">
+      <nb-card-header><td>Applicant Task</nb-card-header>
+      <nb-card-body>
+
+        <table class="table table-hover">
+          <thead>
+          <tr>
+              <td>Name</td>
+              <td>Create Time</td>
+              <td>Priority</td>
+              <td>Description</td>
+              <td>Categury</td>
+              <td>Assignee</td>
+              <td>Claim Time</td>
+              <td>Due Date</td>
+          </tr>
+          </thead>
+
+          <tbody>
+              <tr>
+                  <td>{{ assigneetaskref.name }}</td>
+                  <td>{{ assigneetaskref.createtime }}</td>
+                  <td>{{ assigneetaskref.priority }}</td>
+                  <td>{{ assigneetaskref.description }}</td>
+                  <td>{{ assigneetaskref.categury }}</td>
+                  <td>{{ assigneetaskref.assignee }}</td>
+                  <td>{{ assigneetaskref.claimtime }}</td>
+                  <td>{{ assigneetaskref.duedate }}</td>
+              </tr>
+          </tbody>
+        </table>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-5">
+    <nb-card accent="info" size="tiny">
+      <nb-card-header>Applicant Info</nb-card-header>
+      <nb-card-body>
+
+        <table class="table table-hover">
+          <tbody>
+              <tr>
+                <td>Name</td>
+                <td>{{ applicant.applicant_name }}</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>{{ applicant.applicant_email }}</td>
+              </tr>
+              <tr>
+                <td>Phone Number</td>
+                <td>{{ applicant.applicant_phonenumber }}</td>
+              </tr>
+          </tbody>
+        </table>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-md-7">
+    <nb-card accent="info" size="tiny">
+      <nb-card-body>
+          <div class="form-group row">      
+              <label class="col-sm-6 col-form-label titles" >
+                  <img src="../../../../../../assets/images/jobtitleicon.png" width="25px" height="25px"/>
+                  Job Title: {{ applicant.applicant_job.job_title }}
+              </label>        
+              <label class="col-sm-6 col-form-label titles">
+                <img src="../../../../../../assets/images/companyicon.png" width="25px" height="25px"/>
+                Company: {{ applicant.applicant_job.job_company }}
+              </label>
+          </div>        
+          <div class="form-group row">              
+            <label class="col-sm-6 col-form-label titles" >
+              <img src="../../../../../../assets/images/locationicon.png" width="25px" height="25px"/> 
+              Location: {{ applicant.applicant_job.job_location }}
+            </label>
+            <label class="col-sm-6 col-form-label titles">
+                <img src="../../../../../../assets/images/employmenticon.png" width="25px" height="25px"/>
+                Employment: {{ applicant.applicant_job.job_employment }}
+            </label>
+          </div>
+          <div class="form-group row">
+              <label class="col-sm-6 col-form-label titles">
+                  <img src="../../../../../../assets/images/jobfunctionicon.png" width="25px" height="25px"/>
+                  Job Function: {{ applicant.applicant_job.job_jobfunction }}
+              </label>
+              <label class="col-sm-6 col-form-label titles">
+                  <img src="../../../../../../assets/images/industryicon.png" width="25px" height="25px"/>
+                  Industry: {{ applicant.applicant_job.job_industry }}
+              </label>
+          </div>
+          <hr/>
+          <div class="form-group row">
+              <label class="col-sm-12 col-form-label">
+                  <img src="../../../../../../assets/images/descicon.png" width="25px" height="25px"/>
+                  {{ applicant.applicant_job.job_description }}
+              </label>
+          </div>             
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

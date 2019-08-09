@@ -3,24 +3,24 @@ export default class TaskRef {
 	public taskid:String;
 	public name:String;	
 	public assignee:String;	
-	public categury:String;
+	public category:String;
 	public claimtime:Date;	
 	public createtime:Date;	
 	public description:String;	
-	public duodate:Date;	
+	public duedate:Date;	
 	public priority:Number;	
-	public processdefinitionid:String;
+  public processdefinitionid:String;
   
     constructor();
     constructor(
         taskid:String,
         name:String,	
         assignee:String,
-        categury:String,
+        category:String,
         claimtime:Date,
         createtime:Date,	
         description:String,	
-        duodate:Date,	
+        duedate:Date,	
         priority:Number,	
         processdefinitionid:String
       );
@@ -28,11 +28,11 @@ export default class TaskRef {
         taskid?:String,
         name?:String,	
         assignee?:String,
-        categury?:String,
+        category?:String,
         claimtime?:Date,
         createtime?:Date,	
         description?:String,	
-        duodate?:Date,	
+        duedate?:Date,	
         priority?:Number,	
         processdefinitionid?:String
       )
@@ -40,11 +40,11 @@ export default class TaskRef {
         this.taskid=taskid;
         this.name=name;	
         this.assignee=assignee;	
-        this.categury=categury;
+        this.category=category;
         this.claimtime=claimtime;	
         this.createtime=createtime;	
         this.description=description;	
-        this.duodate=duodate;	
+        this.duedate=duedate;	
         this.priority=priority;	
         this.processdefinitionid=processdefinitionid;
       }

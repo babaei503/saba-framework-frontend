@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import TaskRef from '../../../model/TaskRef';
 import { ApplicantHireProcessService } from '../../../service/applicanthireprocessservice.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NbDialogService } from '@nebular/theme';
-import { DialogDeletePromptComponent } from '../../../../../commoncomponent/dialog-delete-prompt/dialog-delete-prompt.component';
 
 @Component({
   selector: 'ti-get',
@@ -13,10 +11,11 @@ import { DialogDeletePromptComponent } from '../../../../../commoncomponent/dial
 export class TiGetComponent implements OnInit {
 
   taskrefs: TaskRef[];
+  assigneetaskrefs: TaskRef[];
 
   constructor(
     private bs: ApplicantHireProcessService,
-    private dialogService: NbDialogService) { }
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -26,6 +25,14 @@ export class TiGetComponent implements OnInit {
         this.taskrefs = data;
         console.log(this.taskrefs);
     });
+
+    this.bs
+    .getPhoneIntviewTaskAssignee()
+    .subscribe((data: TaskRef[]) => {
+      this.assigneetaskrefs = data;
+      console.log(this.assigneetaskrefs);
+    });
+
   }
 
   claim(taskid) {
@@ -33,6 +40,12 @@ export class TiGetComponent implements OnInit {
       console.log('Claim');
       this.ngOnInit();
     });
+  }
+
+  dotask(taskid){
+
+    console.log(taskid);
+    this.router.navigate(['/pages/hireprocess/dotitask/',taskid]);
   }
   
 }

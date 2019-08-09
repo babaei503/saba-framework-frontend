@@ -1,24 +1,26 @@
-# saba-framework
+# SaBa-Framework
 
-mysql
+Mysql
 
-hibernate
+Hibernate
 
-spring boot
+Spring Boot
 
-restfull API 
+Spring Boot Data JPA
 
-activiti 
+Spring Boot Security
 
-springbootsecurity
+REST API's
 
-custom exception handling
+Activiti
 
-node.js
+Custom Exception Handling
 
-angular7 
+Node.js
 
-jwtauthentication
+Angular 2+ 
+
+JWT Authentication
 
 Backend:
  1. Run scripts on Mysql.
@@ -34,4 +36,4 @@ Fronend:
  4. Call 'npm install -g @angular/cli'.
  5. Call 'ng serve -o'.
  6. Default address is http://localhost:4200.
- 7. Username:'admin' Password:'admin123'
+ 7. Username:'admin' Password:'admin123' Username:'telephone1' Password:'admin123' 

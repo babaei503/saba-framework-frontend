@@ -1,11 +1,13 @@
 <div class="header-container"
      [class.left]="position === 'normal'"
      [class.right]="position === 'inverse'">
-  <div class="logo-containter" style="margin-left: 30px; font-family:'Times New Roman', Times, serif; font-size: 8px">
+  <div class="logo-containter" style="font-family:'Times New Roman', Times, serif; font-size: 8px">
     <a (click)="toggleSidebar()" href="#" class="navigation"><i class="nb-menu"></i></a>
-    <div  class="logo" (click)="goToHome()">saba-framework</div>
+    <div  class="logo" (click)="goToHome()">SaBa-Framework</div>
   </div>
-  <ngx-theme-switcher></ngx-theme-switcher>
+  <div style="margin-inline-start: 60px">
+    <ngx-theme-switcher></ngx-theme-switcher>
+  </div>
 </div>
 
 <div class="header-container">
