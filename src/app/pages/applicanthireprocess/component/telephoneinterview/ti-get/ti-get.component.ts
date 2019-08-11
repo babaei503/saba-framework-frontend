@@ -36,7 +36,7 @@ export class TiGetComponent implements OnInit {
   }
 
   claim(taskid) {
-    this.bs.claimTechIntviewTask(taskid).subscribe(res => {
+    this.bs.claimPhoneIntviewTask(taskid).subscribe(res => {
       console.log('Claim');
       this.ngOnInit();
     });
