@@ -29,7 +29,7 @@ export class GstEditComponent implements OnInit {
   content = 'Error';
 
   applicant: Applicant;//You can define models as any(with no problem)
-  selectedjobid: BigInteger;
+  selectedjobid: Number;
   selectedjob: Job;
   jobs: Job[];
   angForm: FormGroup;

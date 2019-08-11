@@ -36,4 +36,8 @@ Fronend:
  4. Call 'npm install -g @angular/cli'.
  5. Call 'ng serve -o'.
  6. Default address is http://localhost:4200.
- 7. Username:'admin' Password:'admin123' Username:'telephone1' Password:'admin123' 
+ 7. Username and Password
+ Username:'admin' Password:'admin123' 
+ Username:'telephone1' Password:'admin123' 
+ Username:'tech1' Password:'admin123' 
+ Username:'finance1' Password:'admin123' 

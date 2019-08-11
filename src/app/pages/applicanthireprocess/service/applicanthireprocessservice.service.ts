@@ -4,6 +4,7 @@ import Applicant from '../model/Applicant';
 import Job from '../model/Job';
 import TaskRef from '../model/TaskRef';
 import { map } from 'rxjs/operators';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,9 @@ export class ApplicantHireProcessService {
 
   addApplicant(applicant_name, applicant_email, applicant_phonenumber, applicant_job) {
 
-    const applicant = this.mapapplicant(applicant_name, applicant_email, applicant_phonenumber, applicant_job);
+    let applicant = new  Applicant(0, applicant_name, applicant_email, applicant_phonenumber, applicant_job);
+
+    const mappedapplicant = this.mapapplicant(applicant);
 
     const httpOptions: { headers; observe; } = {
       headers: new HttpHeaders({
@@ -31,7 +34,7 @@ export class ApplicantHireProcessService {
       observe: 'response'
     };
     
-    return this.http.post(`${this.uri}/start-applicant-hire-process`, applicant, httpOptions);      
+    return this.http.post(`${this.uri}/start-applicant-hire-process`, mappedapplicant, httpOptions);      
   }
 
   getApplicants() {
@@ -77,11 +80,13 @@ export class ApplicantHireProcessService {
       observe: 'response'
     };
 
-    const applicant = this.mapapplicant(applicant_name, applicant_email, applicant_phonenumber, applicant_job);
+    let applicant = new  Applicant(id, applicant_name, applicant_email, applicant_phonenumber, applicant_job);
+
+    const mappedapplicant = this.mapapplicant(applicant);
 
     return this
       .http
-      .put(`${this.uri}/applicant/update/${id}`, applicant, httpOptions);
+      .put(`${this.uri}/applicant/update/${id}`, mappedapplicant, httpOptions);
 
   }
 
@@ -89,21 +94,6 @@ export class ApplicantHireProcessService {
     return this
               .http
               .delete(`${this.uri}/applicant/delete/${id}`);
-  }
-
-  mapapplicant(applicant_name, applicant_email, applicant_phonenumber, applicant_job): object{
-    const job = {
-      "id":applicant_job._id,
-      "code":applicant_job.job_code,
-      "title":applicant_job.job_title
-    };
-    const applicant = {
-      "name": applicant_name,
-      "email": applicant_email,
-      "phoneNumber": applicant_phonenumber,
-      "job":job
-    };
-    return applicant;  
   }
 
   //================================================================================
@@ -151,6 +141,10 @@ export class ApplicantHireProcessService {
   //Process region
   //================================================================================
 
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //Process region - Phone Interview
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   getPhoneInterviewTasks() {
     return this
            .http
@@ -187,13 +181,165 @@ export class ApplicantHireProcessService {
             ))),);
   }
 
-  claim(taskid){
+  claimPhoneIntviewTask(taskid){
 
     return this
            .http
            .get(`${this.uri}/claim-phoneinterview-task/${taskid}`);
 
   }
+
+  completePhoneinterviewTask(taskid, applicanthireinfo)
+  {
+
+    const httpOptions: { headers; observe; } = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      }),
+      observe: 'response'
+    };
+
+    applicanthireinfo.applicant = this.mapapplicant(applicanthireinfo.applicant);
+    
+    return this.http.post(`${this.uri}/complete-phoneinterview-task/${taskid}`, applicanthireinfo, httpOptions);
+    
+  }
+
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //Process region - Technical Interview
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  getTechInterviewTasks() {
+    return this
+           .http
+           .get(`${this.uri}/get-active-techinterview-tasks`).pipe( 
+            map((data: any[]) => data.map((item: any) => new TaskRef(
+              item.taskid=item.taskid,
+              item.name=item.name,	
+              item.assignee=item.assignee,	
+              item.category=item.category,
+              item.claimtime=item.claimtime,	
+              item.createtime=item.createtime,	
+              item.description=item.description,	
+              item.duedate=item.duedate,	
+              item.priority=item.priority,	
+              item.processdefinitionid=item.processdefinitionid,
+            ))),);
+  }
+
+  getTechIntviewTaskAssignee() {
+    return this
+           .http
+           .get(`${this.uri}/get-active-techinterviewtasks-assignee`).pipe( 
+            map((data: any[]) => data.map((item: any) => new TaskRef(
+              item.taskid=item.taskid,
+              item.name=item.name,	
+              item.assignee=item.assignee,	
+              item.category=item.category,
+              item.claimtime=item.claimtime,	
+              item.createtime=item.createtime,	
+              item.description=item.description,	
+              item.duedate=item.duedate,	
+              item.priority=item.priority,	
+              item.processdefinitionid=item.processdefinitionid,
+            ))),);
+  }
+
+  claimTechIntviewTask(taskid){
+
+    return this
+           .http
+           .get(`${this.uri}/claim-techinterview-task/${taskid}`);
+
+  }
+
+  completeTechinterviewTask(taskid, applicanthireinfo)
+  {
+
+    const httpOptions: { headers; observe; } = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      }),
+      observe: 'response'
+    };
+
+    applicanthireinfo.applicant = this.mapapplicant(applicanthireinfo.applicant);
+    
+    return this.http.post(`${this.uri}/complete-techinterview-task/${taskid}`, applicanthireinfo, httpOptions);
+    
+  }
+
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //Process region - Financ Negotiation
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  getFinanceNegotiationTasks() {
+    return this
+           .http
+           .get(`${this.uri}/get-active-financenegotiation-tasks`).pipe( 
+            map((data: any[]) => data.map((item: any) => new TaskRef(
+              item.taskid=item.taskid,
+              item.name=item.name,	
+              item.assignee=item.assignee,	
+              item.category=item.category,
+              item.claimtime=item.claimtime,	
+              item.createtime=item.createtime,	
+              item.description=item.description,	
+              item.duedate=item.duedate,	
+              item.priority=item.priority,	
+              item.processdefinitionid=item.processdefinitionid,
+            ))),);
+  }
+
+  getFinanceNegotiationTaskAssignee() {
+    return this
+           .http
+           .get(`${this.uri}/get-active-financenegottasks-assignee`).pipe( 
+            map((data: any[]) => data.map((item: any) => new TaskRef(
+              item.taskid=item.taskid,
+              item.name=item.name,	
+              item.assignee=item.assignee,	
+              item.category=item.category,
+              item.claimtime=item.claimtime,	
+              item.createtime=item.createtime,	
+              item.description=item.description,	
+              item.duedate=item.duedate,	
+              item.priority=item.priority,	
+              item.processdefinitionid=item.processdefinitionid,
+            ))),);
+  }
+
+  claimFinanceNegotiationTask(taskid){
+
+    return this
+           .http
+           .get(`${this.uri}/claim-financenegotiation-task/${taskid}`);
+
+  }
+
+  completeFinanceNegotiationTask(taskid, applicanthireinfo)
+  {
+
+    const httpOptions: { headers; observe; } = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      }),
+      observe: 'response'
+    };
+
+    applicanthireinfo.applicant = this.mapapplicant(applicanthireinfo.applicant);
+    
+    return this.http.post(`${this.uri}/complete-financenegotiation-task/${taskid}`, applicanthireinfo, httpOptions);
+    
+  }
+
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //Process region - General
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
   getTaskByIDAssignee(taskid) {
     return this
@@ -235,6 +381,26 @@ export class ApplicantHireProcessService {
                   data.applicant.job.open,
                )
             )));
+  }
+
+  //================================================================================
+  //Map Client Entities to Server Entities
+  //================================================================================
+
+  mapapplicant(applicant): object{
+    const job = {
+      "id":applicant.applicant_job._id,
+      "code":applicant.applicant_job.job_code,
+      "title":applicant.applicant_job.job_title
+    };
+    const mappedapplicant = {
+      "id": applicant._id,
+      "name": applicant.applicant_name,
+      "email": applicant.applicant_email,
+      "phoneNumber": applicant.applicant_phonenumber,
+      "job":job
+    };
+    return mappedapplicant;  
   }
 
 }  

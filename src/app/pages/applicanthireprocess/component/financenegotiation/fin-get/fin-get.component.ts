@@ -4,11 +4,11 @@ import { ApplicantHireProcessService } from '../../../service/applicanthireproce
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'ti-get',
-  templateUrl: './ti-get.component.html',
-  styleUrls: ['./ti-get.component.scss']
+  selector: 'fin-get',
+  templateUrl: './fin-get.component.html',
+  styleUrls: ['./fin-get.component.scss']
 })
-export class TiGetComponent implements OnInit {
+export class FinGetComponent implements OnInit {
 
   taskrefs: TaskRef[];
   assigneetaskrefs: TaskRef[];
@@ -20,14 +20,14 @@ export class TiGetComponent implements OnInit {
   ngOnInit() {
 
     this.bs
-      .getPhoneInterviewTasks()
+      .getFinanceNegotiationTasks()
       .subscribe((data: TaskRef[]) => {
         this.taskrefs = data;
         console.log(this.taskrefs);
     });
 
     this.bs
-    .getPhoneIntviewTaskAssignee()
+    .getFinanceNegotiationTaskAssignee()
     .subscribe((data: TaskRef[]) => {
       this.assigneetaskrefs = data;
       console.log(this.assigneetaskrefs);
@@ -36,7 +36,7 @@ export class TiGetComponent implements OnInit {
   }
 
   claim(taskid) {
-    this.bs.claimTechIntviewTask(taskid).subscribe(res => {
+    this.bs.claimFinanceNegotiationTask(taskid).subscribe(res => {
       console.log('Claim');
       this.ngOnInit();
     });
@@ -45,7 +45,7 @@ export class TiGetComponent implements OnInit {
   dotask(taskid){
 
     console.log(taskid);
-    this.router.navigate(['/pages/hireprocess/dotitask/',taskid]);
+    this.router.navigate(['/pages/hireprocess/dofintask/',taskid]);
   }
   
 }

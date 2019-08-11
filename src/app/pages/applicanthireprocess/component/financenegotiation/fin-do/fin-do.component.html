@@ -115,20 +115,20 @@
   <div class="col-md-12">
     <form [formGroup]="angForm"   novalidate>
       <nb-card accent="info" size="tiny">
-        <nb-card-header>Telephone interview description</nb-card-header>
+        <nb-card-header>Financial Negotiation description</nb-card-header>
         <nb-card-body>    
             <div class="form-group row">              
-              <textarea class="margin-start-end" rows="5" nbInput fullWidth shape="round"  placeholder="Enter the results of interview here"
-              formControlName="telintviwdesc" #telintviwdesc [(ngModel)] = "applicanthireinfo.telintviwdesc"></textarea>
+              <textarea class="margin-start-end" rows="5" nbInput fullWidth shape="round"  placeholder="Enter the results of financial negotiation here"
+              formControlName="finnegotdesc" #finnegotdesc [(ngModel)] = "applicanthireinfo.finnegotdesc"></textarea>
             </div> 
-            <div *ngIf="angForm.controls['telintviwdesc'].invalid && (angForm.controls['telintviwdesc'].dirty || angForm.controls['telintviwdesc'].touched)" class="alert alert-danger">
-                <div *ngIf="angForm.controls['telintviwdesc'].errors.required">
-                  Telephone interview result is required.
+            <div *ngIf="angForm.controls['finnegotdesc'].invalid && (angForm.controls['finnegotdesc'].dirty || angForm.controls['finnegotdesc'].touched)" class="alert alert-danger">
+                <div *ngIf="angForm.controls['finnegotdesc'].errors.required">
+                  Financial negotiation result is required.
                 </div>
             </div>  
             <div class="form-group validation-checkboxes row margin-start-end">
-                <nb-checkbox status="success" class="col-sm-12" formControlName="telintviwres" #telintviwres [(ngModel)] = "applicanthireinfo.telintviwres">
-                    If the applicant is accepted due to the result of telephone interview, check this item.
+                <nb-checkbox status="success" class="col-sm-12" formControlName="finnegotres" #finnegotres [(ngModel)] = "applicanthireinfo.finnegotres">
+                    If the applicant is accepted due to the result of financial negotiation, check this item.
                 </nb-checkbox>
             </div> 
             <div class="form-group row">

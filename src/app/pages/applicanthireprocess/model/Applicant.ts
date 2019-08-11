@@ -1,7 +1,7 @@
 import Job from "./Job";
 
 export default class Applicant {
-  public _id:BigInteger;
+  public _id:Number;
   public applicant_name: String;
   public applicant_email: string;
   public applicant_phonenumber: string;
@@ -9,13 +9,13 @@ export default class Applicant {
 
   constructor();
   constructor(
-    _id:BigInteger,
+    _id:Number,
     applicant_name: String,
     applicant_email: string,
     applicant_phonenumber: string,
     applicant_job: Job);
   constructor(
-    _id?:BigInteger,
+    _id?:Number,
     applicant_name?: String,
     applicant_email?: string,
     applicant_phonenumber?: string,

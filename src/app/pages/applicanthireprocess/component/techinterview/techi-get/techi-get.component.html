@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card accent="info" size="tiny">
+      <nb-card-header>Your Technical Interview Tasks</nb-card-header>
+      <nb-card-body>
+
+        <table class="table table-hover">
+          <thead>
+          <tr>
+              <td>Name</td>
+              <td>Create Time</td>
+              <td>Priority</td>
+              <td>Description</td>
+              <td>Categury</td>
+              <td>Assignee</td>
+              <td>Claim Time</td>
+              <td>Due Date</td>
+              <td colspan="2" class="text-align-center">Actions</td>
+          </tr>
+          </thead>
+
+          <tbody>
+              <tr *ngFor="let assigneetaskref of assigneetaskrefs">
+                  <td>{{ assigneetaskref.name }}</td>
+                  <td>{{ assigneetaskref.createtime }}</td>
+                  <td>{{ assigneetaskref.priority }}</td>
+                  <td>{{ assigneetaskref.description }}</td>
+                  <td>{{ assigneetaskref.categury }}</td>
+                  <td>{{ assigneetaskref.assignee }}</td>
+                  <td>{{ assigneetaskref.claimtime }}</td>
+                  <td>{{ assigneetaskref.duedate }}</td>
+                  <td><a (click) ="dotask(assigneetaskref.taskid)" class="btn btn-primary">Do task</a></td>
+              </tr>
+          </tbody>
+        </table>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card accent="info" size="tiny">
+      <nb-card-header>Technical Interview Tasks</nb-card-header>
+      <nb-card-body>
+
+        <table class="table table-hover">
+          <thead>
+          <tr>
+              <td>Name</td>
+              <td>Create Time</td>
+              <td>Priority</td>
+              <td>Description</td>
+              <td>Categury</td>
+              <td>Due Date</td>
+              <td colspan="2" class="text-align-center">Actions</td>
+          </tr>
+          </thead>
+
+          <tbody>
+              <tr *ngFor="let taskref of taskrefs">
+                  <td>{{ taskref.name }}</td>
+                  <td>{{ taskref.createtime }}</td>
+                  <td>{{ taskref.priority }}</td>
+                  <td>{{ taskref.description }}</td>
+                  <td>{{ taskref.categury }}</td>
+                  <td>{{ taskref.duedate }}</td>
+                  <td><a (click) ="claim(taskref.taskid)" class="btn btn-primary">Claim</a></td>
+              </tr>
+          </tbody>
+        </table>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

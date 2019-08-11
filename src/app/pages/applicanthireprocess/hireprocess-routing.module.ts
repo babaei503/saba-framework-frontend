@@ -8,6 +8,10 @@ import { GstEditComponent } from './component/applicant/gst-edit/gst-edit.compon
 import { JobgetComponent } from './component/job/job-get/job-get.component';
 import { TiGetComponent } from './component/telephoneinterview/ti-get/ti-get.component';
 import { TiDoComponent } from './component/telephoneinterview/ti-do/ti-do.component';
+import { TechiGetComponent } from './component/techinterview/techi-get/techi-get.component';
+import { TechiDoComponent } from './component/techinterview/techi-do/techi-do.component';
+import { FinGetComponent } from './component/financenegotiation/fin-get/fin-get.component';
+import { FinNDoComponent } from './component/financenegotiation/fin-do/fin-do.component';
 
 const routes: Routes = [{
   path: '',
@@ -37,7 +41,22 @@ const routes: Routes = [{
       path: 'dotitask/:taskid',
       component: TiDoComponent,
     },
-    
+    {
+      path: 'techinterview',
+      component: TechiGetComponent,
+    },
+    {
+      path: 'dotechitask/:taskid',
+      component: TechiDoComponent,
+    },
+    {
+      path: 'financenegotiation',
+      component: FinGetComponent,
+    },
+    {
+      path: 'dofintask/:taskid',
+      component: FinNDoComponent,
+    },  
   ],
 }];
 
@@ -62,4 +81,8 @@ export const routedComponents = [
   JobgetComponent,
   TiGetComponent,
   TiDoComponent,
+  TechiGetComponent,
+  TechiDoComponent,
+  FinGetComponent,
+  FinNDoComponent,
 ];

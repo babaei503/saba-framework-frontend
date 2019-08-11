@@ -12,11 +12,11 @@ import { ToasterConfig } from 'angular2-toaster';
 import Applicanthireinfo from '../../../model/Applicanthireinfo';
 
 @Component({
-  selector: 'ti-do',
-  templateUrl: './ti-do.component.html',
-  styleUrls: ['./ti-do.component.scss']
+  selector: 'fin-do',
+  templateUrl: './fin-do.component.html',
+  styleUrls: ['./fin-do.component.scss']
 })
-export class TiDoComponent implements OnInit {
+export class FinNDoComponent implements OnInit {
 
 
   config: ToasterConfig;
@@ -55,8 +55,8 @@ export class TiDoComponent implements OnInit {
 
   createForm() {
     this.angForm = this.fb.group({
-      telintviwdesc: ['', Validators.compose([Validators.required])],
-      telintviwres: [Boolean],
+      finnegotdesc: ['', Validators.compose([Validators.required])],
+      finnegotres: [Boolean],
     });
   }
 
@@ -86,14 +86,14 @@ export class TiDoComponent implements OnInit {
 
     this.applicanthireinfo.applicant = this.applicant;
 
-    this.bs.completePhoneinterviewTask(this.assigneetaskref.taskid, this.applicanthireinfo).subscribe(res => 
+    this.bs.completeFinanceNegotiationTask(this.assigneetaskref.taskid, this.applicanthireinfo).subscribe(res => 
       { 
         //make toast message
         this.title = `The task complete`;
         this.content = `Successfull`;
         this.status = NbToastStatus.SUCCESS;
         this.showToast(this.status,this.title,this.content);
-        this.router.navigate(['/pages/hireprocess/telephoneinterview']);
+        this.router.navigate(['/pages/hireprocess/financenegotiation']);
 
         console.log(res);
       },

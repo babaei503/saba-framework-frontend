@@ -1,5 +1,5 @@
 export default class Job {
-  public _id:BigInteger;
+  public _id:Number;
   public job_code: String;
   public job_title: string;
   public job_company: string;
@@ -12,12 +12,12 @@ export default class Job {
   
   constructor();
   constructor(
-    _id:BigInteger,
+    _id:Number,
     job_code: String,
     job_title: string,
   );
   constructor(
-    _id:BigInteger,
+    _id:Number,
     job_code: String,
     job_title: string,
     job_company: string,
@@ -28,7 +28,7 @@ export default class Job {
     job_description: string,
     job_open: boolean);
   constructor(
-    _id?:BigInteger,
+    _id?:Number,
     job_code?: String,
     job_title?: string,
     job_company?: string,

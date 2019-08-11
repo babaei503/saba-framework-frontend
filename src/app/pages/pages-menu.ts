@@ -16,22 +16,46 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+    title: 'Find Jobs',
+    icon: 'nb-search',
+    children: [
+      {
+        title: 'Jobs',
+        link: '/pages/hireprocess/jobs/all/all',
+      },
+    ],
+  },
+  {
     title: 'Hire Process',
     icon: 'nb-compose',
     children: [
       {
-        title: 'jobs',
-        link: '/pages/hireprocess/jobs/all/all',
-      },
-      {
-        title: 'Telephone interview',
+        title: 'Telephone Interview',
         link: '/pages/hireprocess/telephoneinterview',
       },
+      {
+        title: 'Technical Interview',
+        link: '/pages/hireprocess/techinterview',
+      },
+      {
+        title: 'Financial Negotiation',
+        link: '/pages/hireprocess/financenegotiation',
+      },
+    ],
+  },
+  {
+    title: 'Admin Panel',
+    icon: 'nb-person',
+    children: [
       {
         title: 'Applicants',
         link: '/pages/hireprocess/applicant',
       },
     ],
+  },
+  {
+    title: 'Authentication',
+    group: true,
   },
   {
     title: 'Auth',

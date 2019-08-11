@@ -4,11 +4,11 @@ import { ApplicantHireProcessService } from '../../../service/applicanthireproce
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'ti-get',
-  templateUrl: './ti-get.component.html',
-  styleUrls: ['./ti-get.component.scss']
+  selector: 'techi-get',
+  templateUrl: './techi-get.component.html',
+  styleUrls: ['./techi-get.component.scss']
 })
-export class TiGetComponent implements OnInit {
+export class TechiGetComponent implements OnInit {
 
   taskrefs: TaskRef[];
   assigneetaskrefs: TaskRef[];
@@ -20,14 +20,14 @@ export class TiGetComponent implements OnInit {
   ngOnInit() {
 
     this.bs
-      .getPhoneInterviewTasks()
+      .getTechInterviewTasks()
       .subscribe((data: TaskRef[]) => {
         this.taskrefs = data;
         console.log(this.taskrefs);
     });
 
     this.bs
-    .getPhoneIntviewTaskAssignee()
+    .getTechIntviewTaskAssignee()
     .subscribe((data: TaskRef[]) => {
       this.assigneetaskrefs = data;
       console.log(this.assigneetaskrefs);
@@ -45,7 +45,7 @@ export class TiGetComponent implements OnInit {
   dotask(taskid){
 
     console.log(taskid);
-    this.router.navigate(['/pages/hireprocess/dotitask/',taskid]);
+    this.router.navigate(['/pages/hireprocess/dotechitask/',taskid]);
   }
   
 }

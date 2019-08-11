@@ -28,8 +28,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers()
       .subscribe((users: any) => {this.user = users.saeid;
-        console.log(users);
-        
       }
       );
   }
