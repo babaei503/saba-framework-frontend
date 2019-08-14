@@ -51,6 +51,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Applicants',
         link: '/pages/hireprocess/applicant',
       },
+      {
+        title: 'Process Status',
+        link: '/pages/hireprocess/Processtatus',
+      },
     ],
   },
   {

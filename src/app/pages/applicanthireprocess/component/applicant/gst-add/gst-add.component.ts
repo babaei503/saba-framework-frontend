@@ -11,7 +11,7 @@ import { ToasterConfig } from 'angular2-toaster';
 @Component({
   selector: 'app-gst-add',
   templateUrl: './gst-add.component.html',
-  styleUrls: ['./gst-add.component.css']
+  styleUrls: ['./gst-add.component.scss']
 })
 export class GstAddComponent implements OnInit {
 

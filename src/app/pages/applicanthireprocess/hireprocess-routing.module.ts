@@ -12,6 +12,7 @@ import { TechiGetComponent } from './component/techinterview/techi-get/techi-get
 import { TechiDoComponent } from './component/techinterview/techi-do/techi-do.component';
 import { FinGetComponent } from './component/financenegotiation/fin-get/fin-get.component';
 import { FinNDoComponent } from './component/financenegotiation/fin-do/fin-do.component';
+import { ProcstatComponent } from './component/Processtatus/procstat-get/procstat-get.compoenet';
 
 const routes: Routes = [{
   path: '',
@@ -56,7 +57,11 @@ const routes: Routes = [{
     {
       path: 'dofintask/:taskid',
       component: FinNDoComponent,
-    },  
+    },
+    {
+      path: 'Processtatus',
+      component: ProcstatComponent,
+    },
   ],
 }];
 
@@ -85,4 +90,5 @@ export const routedComponents = [
   TechiDoComponent,
   FinGetComponent,
   FinNDoComponent,
+  ProcstatComponent,
 ];
