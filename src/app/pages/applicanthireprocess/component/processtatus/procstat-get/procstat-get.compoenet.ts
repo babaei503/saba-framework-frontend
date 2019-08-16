@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApplicantHireProcessService } from '../../../service/applicanthireprocessservice.service';
+import Hireprocessinfo from '../../../model/Hireprocessinfo';
 
 @Component({
   selector: 'procstat-get',
@@ -8,10 +10,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProcstatComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) {
+  hireprocessinfos: Hireprocessinfo[];
+
+  constructor(private fb: FormBuilder,
+              private bs: ApplicantHireProcessService) {
   }
 
   ngOnInit() {
+
+    this.bs
+    .gethireprocessinfo()
+    .subscribe((data: Hireprocessinfo[]) => {   
+      this.hireprocessinfos = data;
+      console.log(this.hireprocessinfos);
+    });
 
   }
 

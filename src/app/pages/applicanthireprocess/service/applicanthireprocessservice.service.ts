@@ -5,6 +5,7 @@ import Job from '../model/Job';
 import TaskRef from '../model/TaskRef';
 import { map } from 'rxjs/operators';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
+import Hireprocessinfo from '../model/Hireprocessinfo';
 
 @Injectable({
   providedIn: 'root'
@@ -381,6 +382,35 @@ export class ApplicantHireProcessService {
                   data.applicant.job.open,
                )
             )));
+  }
+
+  gethireprocessinfo() {
+    return this
+           .http
+           .get(`${this.uri}/getallhireprocesslist`).pipe(
+            map((data: any[]) => data.map((item: any) => new Hireprocessinfo(
+              item.processid,
+              new Applicant(
+              item.data.applicant.id,
+              item.data.applicant.name,
+              item.data.applicant.email,
+              item.data.applicant.phoneNumber,
+              new Job(
+                item.data.applicant.job.id,
+                item.data.applicant.job.code,
+                item.data.applicant.job.title,
+                item.data.applicant.job.company,
+                item.data.applicant.job.location,
+                item.data.applicant.job.employment,
+                item.data.applicant.job.jobfunction,
+                item.data.applicant.job.industry,
+                item.data.applicant.job.description,
+                item.data.applicant.job.open,
+              )),
+              item.data.telephoneInterviewOutcome,
+              item.data.techOk,
+              item.data.financeOk
+            ))),);;
   }
 
   //================================================================================

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-6  content-center">
+  <div class="col-md-12  content-center">
     <nb-card size="tiny">
       <nb-card-body>
 
@@ -7,6 +7,7 @@
             <table class="table table-hover">
               <thead>
               <tr>
+                  <td>Process ID</td>
                   <td>Name</td>
                   <td>Email</td>
                   <td>Phone Number</td>
@@ -16,11 +17,12 @@
               </thead>
   
               <tbody>
-                  <tr *ngFor="let applicant of applicants">
-                      <td>{{ applicant.applicant_name }}</td>
-                      <td>{{ applicant.applicant_email }}</td>
-                      <td>{{ applicant.applicant_phonenumber }}</td>
-                      <td>{{ applicant.applicant_job.job_title }}</td>
+                  <tr *ngFor="let hireprocessinfo of hireprocessinfos">
+                      <td>{{ hireprocessinfo.processid }}</td>
+                      <td>{{ hireprocessinfo.applicant.applicant_name }}</td>
+                      <td>{{ hireprocessinfo.applicant.applicant_email }}</td>
+                      <td>{{ hireprocessinfo.applicant.applicant_phonenumber }}</td>
+                      <td>{{ hireprocessinfo.applicant.applicant_job.job_title }}</td>
                       <td><a (click) ="setStepper(stepper)" class="btn btn-primary">Show Status</a></td>
                   </tr>
               </tbody>
@@ -34,7 +36,7 @@
   
 <div class="steppers-container row">
 
-  <div class="col-md-12 col-lg-6 col-xxxl-6">
+  <div class="col-md-12 col-lg-12 col-xxxl-6">
     <nb-card size="medium">
       <nb-card-body>
         <nb-stepper orientation="vertical" #stepper>
