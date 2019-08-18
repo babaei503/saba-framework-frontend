@@ -1,6 +1,27 @@
 <div class="row">
+  <div class="col-md-12">
+      <nb-card class="inline-form-card" accent="info">
+        <nb-card-header>Process Search</nb-card-header>
+        <nb-card-body>
+          <form [formGroup]="angForm" novalidate class="form-inline">
+            <div class="form-group full-width">
+                <label>From Date</label>
+                <input type="text" class="form-control offcet-start10" placeholder="From Date" formControlName="fromdate" #fromdate [(ngModel)] = "from_date">
+            </div>
+            <div class="form-group full-width">
+                <label class="offcet-start20">To Date</label>
+                <input type="text" class="offcet-start10 form-control" placeholder="To Date" formControlName="todate" #todate [(ngModel)] = "to_date">
+            </div>
+              <button (click)="Searchprocess(fromdate.value,todate.value)" class="offcet-start20 btn btn-primary full-width">Search</button>
+          </form>
+        </nb-card-body>
+      </nb-card>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-12  content-center">
-    <nb-card size="tiny">
+    <nb-card size="tiny" accent="info">
       <nb-card-body>
 
         <div class="table-container">
@@ -17,13 +38,13 @@
               </thead>
   
               <tbody>
-                  <tr *ngFor="let hireprocessinfo of hireprocessinfos">
+                  <tr *ngFor="let hireprocessinfo of hireprocessinfos" [class.highlighted]="hireprocessinfo.processid == currentprocessid">
                       <td>{{ hireprocessinfo.processid }}</td>
                       <td>{{ hireprocessinfo.applicant.applicant_name }}</td>
                       <td>{{ hireprocessinfo.applicant.applicant_email }}</td>
                       <td>{{ hireprocessinfo.applicant.applicant_phonenumber }}</td>
                       <td>{{ hireprocessinfo.applicant.applicant_job.job_title }}</td>
-                      <td><a (click) ="setStepper(stepper)" class="btn btn-primary">Show Status</a></td>
+                      <td><a (click) ="setStepper(stepper, hireprocessinfo.applicant._id, hireprocessinfo.processid)" class="btn btn-primary">Show Status</a></td>
                   </tr>
               </tbody>
             </table>
@@ -36,60 +57,30 @@
   
 <div class="steppers-container row">
 
-  <div class="col-md-12 col-lg-12 col-xxxl-6">
-    <nb-card size="medium">
+  <div class="col-md-12 col-lg-12 col-xxxl-12">
+    <nb-card accent="info" size="tiny">
       <nb-card-body>
-        <nb-stepper orientation="vertical" #stepper>
-          <nb-step label="First step">
-            <h3>Step content #1</h3>
-            <p class="lorem">
-              Proin varius accumsan semper. Praesent consequat tincidunt sagittis. Curabitur egestas sem a ipsum bibendum,
-              sit amet fringilla orci efficitur. Nam bibendum lectus ut viverra tristique. Fusce eu pulvinar magna, quis
-              viverra ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus turpis, commodo vel
-              placerat quis, lobortis in ligula.
-            </p>
-            <button nbButton disabled nbStepperNext>prev</button>
-            <button nbButton nbStepperNext>next</button>
+        <nb-stepper orientation="horizontal" disableStepNavigation #stepper>
+          <nb-step label="Start">
           </nb-step>
-          <nb-step label="Second step">
-            <h3>Step content #2</h3>
-            <p class="lorem">
-              Curabitur luctus mattis risus nec condimentum. Donec at dui turpis. Sed vehicula fringilla rutrum. Nullam
-              sed ornare magna. Mauris vitae laoreet diam. Mauris fermentum ligula at lacinia semper. Nulla placerat dui
-              eu sapien pellentesque, eu placerat leo luctus. Cras pharetra blandit fermentum.
-            </p>
-            <button nbButton nbStepperPrevious>prev</button>
-            <button nbButton nbStepperNext>next</button>
+          <nb-step [label]="Telephone" [completed]="applicanthireinfo.telintviwres">
+            <ng-template #Telephone><div [class.reject]="applicanthireinfo.telintviwres==false">Telephone</div></ng-template>
           </nb-step>
-          <nb-step label="Third step">
-            <h3>Step content #3</h3>
-            <p class="lorem">
-              Proin varius accumsan semper. Praesent consequat tincidunt sagittis. Curabitur egestas sem a ipsum bibendum,
-              sit amet fringilla orci efficitur. Nam bibendum lectus ut viverra tristique. Fusce eu pulvinar magna, quis
-              viverra ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus turpis, commodo vel
-              placerat quis, lobortis in ligula.
-            </p>
-            <p class="lorem">
-              Curabitur luctus mattis risus nec condimentum. Donec at dui turpis. Sed vehicula fringilla rutrum. Nullam
-              sed ornare magna. Mauris vitae laoreet diam. Mauris fermentum ligula at lacinia semper. Nulla placerat dui
-              eu sapien pellentesque, eu placerat leo luctus. Cras pharetra blandit fermentum.
-            </p>
-            <button nbButton nbStepperPrevious>prev</button>
-            <button nbButton nbStepperNext>next</button>
+          <nb-step [label]="Technical" [completed]="applicanthireinfo.techintviwres" [hidden]="applicanthireinfo.telintviwres==false">
+            <ng-template #Technical><div [class.reject]="applicanthireinfo.techintviwres==false">Technical</div></ng-template>
           </nb-step>
-          <nb-step label="Fourth step">
-            <h3>Step content #4</h3>
-            <p class="lorem">
-              Proin varius accumsan semper. Praesent consequat tincidunt sagittis. Curabitur egestas sem a ipsum bibendum,
-              sit amet fringilla orci efficitur. Nam bibendum lectus ut viverra tristique. Fusce eu pulvinar magna, quis
-              viverra ex.
-            </p>
-            <button nbButton nbStepperPrevious>prev</button>
-            <button nbButton disabled nbStepperNext>next</button>
+          <nb-step [label]="Financial" [completed]="applicanthireinfo.finnegotres" [hidden]="applicanthireinfo.telintviwres==false">
+            <ng-template #Financial><div [class.reject]="applicanthireinfo.finnegotres==false">Financial</div></ng-template>
+          </nb-step>
+          <nb-step [label]="Endlbl" [completed]="applicanthireinfo.telintviwres && applicanthireinfo.techintviwres && applicanthireinfo.finnegotres">
+            <ng-template #Endlbl>
+              <div [class.reject]="applicanthireinfo.telintviwres==false || applicanthireinfo.techintviwres==false || applicanthireinfo.finnegotres==false">
+                {{endstatus}}
+              </div>
+            </ng-template>
           </nb-step>
         </nb-stepper>
       </nb-card-body>
     </nb-card>
   </div>
-
 </div>

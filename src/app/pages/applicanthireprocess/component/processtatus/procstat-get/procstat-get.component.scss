@@ -7,6 +7,11 @@
     }
   }
 
+.offcet-start10
+{
+    margin-inline-start: 10px;
+}
+
 .offcet-start20
 {
     margin-inline-start: 20px;
@@ -26,3 +31,19 @@ table
   thead{
     font-weight: bold;
   }
+
+.offcet-startend50
+  {
+    margin-inline-start: 50px;
+    margin-inline-end: 50px;
+  }
+
+.highlighted
+{
+  background-color: #5883ad3d;
+}
+
+.reject
+{
+  color: #df6060;
+}

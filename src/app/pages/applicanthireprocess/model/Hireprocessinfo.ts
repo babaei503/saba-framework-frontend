@@ -3,28 +3,28 @@ import Applicant from "./Applicant";
 export default class Hireprocessinfo {
   public processid:Number;
   public applicant: Applicant;
-  public telephoneInterviewOutcome: string;
-  public techOk: string;
-  public financeOk: string;
+  public phoneInterview: string;
+  public tech: string;
+  public finance: string;
 
   constructor();
   constructor(
     processid:Number,
     applicant: Applicant,
-    telephoneInterviewOutcome: string,
-    techOk: string,
-    financeOk: string);
+    phoneInterview: string,
+    tech: string,
+    finance: string);
   constructor(
     processid?:Number,
     applicant?: Applicant,
-    telephoneInterviewOutcome?: string,
-    techOk?: string,
-    financeOk?: string)
+    phoneInterview?: string,
+    tech?: string,
+    finance?: string)
     {
       this.processid=processid;
       this.applicant=applicant;
-      this.telephoneInterviewOutcome=telephoneInterviewOutcome;
-      this.techOk=techOk;
-      this.financeOk=financeOk;
+      this.phoneInterview=phoneInterview;
+      this.tech=tech;
+      this.finance=finance;
     }
 }

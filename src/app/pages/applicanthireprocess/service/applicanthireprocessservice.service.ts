@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders  } from '@angular/common/http';
 import Applicant from '../model/Applicant';
+import Applicanthireinfo from '../model/Applicanthireinfo';
 import Job from '../model/Job';
 import TaskRef from '../model/TaskRef';
 import { map } from 'rxjs/operators';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 import Hireprocessinfo from '../model/Hireprocessinfo';
+import { BodyOutputType } from 'angular2-toaster';
 
 @Injectable({
   providedIn: 'root'
@@ -138,6 +140,45 @@ export class ApplicantHireProcessService {
            .get(`${this.uri}/get-open-job-list-by-location-title/${location}/${title}/${page}/${itemcount}`);
   }
 
+
+  //================================================================================
+  //Applicant hire info region
+  //================================================================================
+
+  getApplicanthireinfoByID(applicantid) {
+    return this
+           .http
+           .get(`${this.uri}/get-apphireinfo-by-id/${applicantid}`).pipe(
+            map((item: any) => new Applicanthireinfo(
+              item._id=item.id,
+              new Applicant(
+                item.applicant.id,
+                item.applicant.name,
+                item.applicant.email,
+                item.applicant.phoneNumber,
+                new Job(
+                  item.applicant.job.id,
+                  item.applicant.job.code,
+                  item.applicant.job.title,
+                  item.applicant.job.company,
+                  item.applicant.job.location,
+                  item.applicant.job.employment,
+                  item.applicant.job.jobfunction,
+                  item.applicant.job.industry,
+                  item.applicant.job.description,
+                  item.applicant.job.open,
+                )
+              ),
+              item.telintviwres,
+              item.telintviwdesc,
+              item.techintviwres,
+              item.techintviwdesc,
+              item.finnegotres,
+              item.finnegotdesc
+            )));
+  }
+
+
   //================================================================================
   //Process region
   //================================================================================
@@ -202,6 +243,8 @@ export class ApplicantHireProcessService {
 
     applicanthireinfo.applicant = this.mapapplicant(applicanthireinfo.applicant);
     
+    console.log(applicanthireinfo);
+
     return this.http.post(`${this.uri}/complete-phoneinterview-task/${taskid}`, applicanthireinfo, httpOptions);
     
   }
@@ -384,33 +427,24 @@ export class ApplicantHireProcessService {
             )));
   }
 
-  gethireprocessinfo() {
+  gethireprocessinfo(fromdate,todate) {
+        
+    const SrchCondition = {
+      "fromdate":fromdate,
+      "todate":todate
+    };
+
+    const httpOptions: { headers; observe; } = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      }),
+      observe: 'response'
+    };
+
     return this
            .http
-           .get(`${this.uri}/getallhireprocesslist`).pipe(
-            map((data: any[]) => data.map((item: any) => new Hireprocessinfo(
-              item.processid,
-              new Applicant(
-              item.data.applicant.id,
-              item.data.applicant.name,
-              item.data.applicant.email,
-              item.data.applicant.phoneNumber,
-              new Job(
-                item.data.applicant.job.id,
-                item.data.applicant.job.code,
-                item.data.applicant.job.title,
-                item.data.applicant.job.company,
-                item.data.applicant.job.location,
-                item.data.applicant.job.employment,
-                item.data.applicant.job.jobfunction,
-                item.data.applicant.job.industry,
-                item.data.applicant.job.description,
-                item.data.applicant.job.open,
-              )),
-              item.data.telephoneInterviewOutcome,
-              item.data.techOk,
-              item.data.financeOk
-            ))),);;
+           .post(`${this.uri}/getallhireprocesslist`, SrchCondition, httpOptions);
+
   }
 
   //================================================================================
