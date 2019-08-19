@@ -149,33 +149,48 @@ export class ApplicantHireProcessService {
     return this
            .http
            .get(`${this.uri}/get-apphireinfo-by-id/${applicantid}`).pipe(
-            map((item: any) => new Applicanthireinfo(
-              item._id=item.id,
-              new Applicant(
-                item.applicant.id,
-                item.applicant.name,
-                item.applicant.email,
-                item.applicant.phoneNumber,
-                new Job(
-                  item.applicant.job.id,
-                  item.applicant.job.code,
-                  item.applicant.job.title,
-                  item.applicant.job.company,
-                  item.applicant.job.location,
-                  item.applicant.job.employment,
-                  item.applicant.job.jobfunction,
-                  item.applicant.job.industry,
-                  item.applicant.job.description,
-                  item.applicant.job.open,
-                )
-              ),
-              item.telintviwres,
-              item.telintviwdesc,
-              item.techintviwres,
-              item.techintviwdesc,
-              item.finnegotres,
-              item.finnegotdesc
-            )));
+            map((item: any) => 
+              this.ApplicanthireinfoNullIfUndefined(item)
+            ));
+  }
+
+  //Return Null if applicant hire info in not exists
+  ApplicanthireinfoNullIfUndefined(item)
+  {
+    if (item){
+      return new Applicanthireinfo(
+        item._id=item.id,
+        new Applicant(
+          item.applicant.id,
+          item.applicant.name,
+          item.applicant.email,
+          item.applicant.phoneNumber,
+          new Job(
+            item.applicant.job.id,
+            item.applicant.job.code,
+            item.applicant.job.title,
+            item.applicant.job.company,
+            item.applicant.job.location,
+            item.applicant.job.employment,
+            item.applicant.job.jobfunction,
+            item.applicant.job.industry,
+            item.applicant.job.description,
+            item.applicant.job.open,
+          )
+        ),
+        item.telintviwres,
+        item.telintviwdesc,
+        item.techintviwres,
+        item.techintviwdesc,
+        item.finnegotres,
+        item.finnegotdesc
+      );
+    }
+    else{
+      let applicanthireinfo = new Applicanthireinfo();
+      applicanthireinfo.applicant = new Applicant();
+      return applicanthireinfo;
+    }
   }
 
 

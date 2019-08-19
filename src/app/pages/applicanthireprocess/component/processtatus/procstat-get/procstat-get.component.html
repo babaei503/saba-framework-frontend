@@ -6,13 +6,15 @@
           <form [formGroup]="angForm" novalidate class="form-inline">
             <div class="form-group full-width">
                 <label>From Date</label>
-                <input type="text" class="form-control offcet-start10" placeholder="From Date" formControlName="fromdate" #fromdate [(ngModel)] = "from_date">
+                <input nbInput placeholder="Form Date" class="offcet-start10" [nbDatepicker]="ngfromdate" formControlName="fromdate" #fromdate [(ngModel)]="from_date">
+                <nb-datepicker #ngfromdate></nb-datepicker>
             </div>
             <div class="form-group full-width">
                 <label class="offcet-start20">To Date</label>
-                <input type="text" class="offcet-start10 form-control" placeholder="To Date" formControlName="todate" #todate [(ngModel)] = "to_date">
+                <input nbInput placeholder="To Date" class="offcet-start10" [nbDatepicker]="ngtodate" formControlName="todate" #todate [(ngModel)]="to_date">
+                <nb-datepicker #ngtodate></nb-datepicker>
             </div>
-              <button (click)="Searchprocess(fromdate.value,todate.value)" class="offcet-start20 btn btn-primary full-width">Search</button>
+              <button (click)="Searchprocess()" class="offcet-start20 btn btn-primary full-width">Search</button>
           </form>
         </nb-card-body>
       </nb-card>
@@ -28,24 +30,24 @@
             <table class="table table-hover">
               <thead>
               <tr>
-                  <td>Process ID</td>
-                  <td>Name</td>
-                  <td>Email</td>
-                  <td>Phone Number</td>
-                  <td>Job Title</td>
-                  <td colspan="2">Actions</td>
+                <td>Process ID</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Phone Number</td>
+                <td>Job Title</td>
+                <td colspan="2">Actions</td>
               </tr>
               </thead>
   
               <tbody>
-                  <tr *ngFor="let hireprocessinfo of hireprocessinfos" [class.highlighted]="hireprocessinfo.processid == currentprocessid">
-                      <td>{{ hireprocessinfo.processid }}</td>
-                      <td>{{ hireprocessinfo.applicant.applicant_name }}</td>
-                      <td>{{ hireprocessinfo.applicant.applicant_email }}</td>
-                      <td>{{ hireprocessinfo.applicant.applicant_phonenumber }}</td>
-                      <td>{{ hireprocessinfo.applicant.applicant_job.job_title }}</td>
-                      <td><a (click) ="setStepper(stepper, hireprocessinfo.applicant._id, hireprocessinfo.processid)" class="btn btn-primary">Show Status</a></td>
-                  </tr>
+                <tr *ngFor="let hireprocessinfo of hireprocessinfos" [class.highlighted]="hireprocessinfo.processid == currentprocessid">
+                  <td>{{ hireprocessinfo.processid }}</td>
+                  <td>{{ hireprocessinfo.applicant.applicant_name }}</td>
+                  <td>{{ hireprocessinfo.applicant.applicant_email }}</td>
+                  <td>{{ hireprocessinfo.applicant.applicant_phonenumber }}</td>
+                  <td>{{ hireprocessinfo.applicant.applicant_job.job_title }}</td>
+                  <td><a (click) ="setStepper(stepper, hireprocessinfo.applicant._id, hireprocessinfo.processid)" class="btn btn-primary">Show Status</a></td>
+                </tr>
               </tbody>
             </table>
         </div>
@@ -80,6 +82,62 @@
             </ng-template>
           </nb-step>
         </nb-stepper>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12  content-center">
+    <nb-card size="tiny" accent="info">
+      <nb-card-body>
+
+        <div class="table-container">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <td>Process Task</td>
+                <td>Assignee</td>
+                <td>Create Time</td>
+                <td>Claim Time</td>
+                <td>End Time</td>
+                <td>Description</td>
+                <td>Result</td>
+              </tr>
+              </thead>
+  
+              <tbody>
+                <tr>
+                  <td>Telephone Interview</td>
+                  <td>{{ hireprocessinfo.telephoneinterview.assignee }}</td>
+                  <td>{{ hireprocessinfo.telephoneinterview.createtime }}</td>
+                  <td>{{ hireprocessinfo.telephoneinterview.claimtime }}</td>
+                  <td>{{ hireprocessinfo.telephoneinterview.endtime }}</td>
+                  <td>{{ applicanthireinfo.telintviwdesc }}</td>
+                  <td>{{ hireprocessinfo.telephoneinterview.res }}</td>
+                </tr>
+                <tr>
+                  <td>Technical Interview</td>
+                  <td>{{ hireprocessinfo.techinterview.assignee }}</td>
+                  <td>{{ hireprocessinfo.techinterview.createtime }}</td>
+                  <td>{{ hireprocessinfo.techinterview.claimtime }}</td>
+                  <td>{{ hireprocessinfo.techinterview.endtime }}</td>
+                  <td>{{ applicanthireinfo.techintviwdesc }}</td>
+                  <td>{{ hireprocessinfo.techinterview.res }}</td>
+                </tr>
+                <tr>
+                  <td>Financial Negotiation</td>
+                  <td>{{ hireprocessinfo.financialnegotiation.assignee }}</td>
+                  <td>{{ hireprocessinfo.financialnegotiation.createtime }}</td>
+                  <td>{{ hireprocessinfo.financialnegotiation.claimtime }}</td>
+                  <td>{{ hireprocessinfo.financialnegotiation.endtime }}</td>
+                  <td>{{ applicanthireinfo.finnegotdesc }}</td>
+                  <td>{{ hireprocessinfo.financialnegotiation.res }}</td>
+                </tr>                                  
+              </tbody>
+            </table>
+        </div>
+        
       </nb-card-body>
     </nb-card>
   </div>

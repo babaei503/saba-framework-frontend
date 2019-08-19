@@ -1,30 +1,31 @@
 import Applicant from "./Applicant";
+import HireprocessTaskinfo from "./HireprocessTaskinfo";
 
 export default class Hireprocessinfo {
   public processid:Number;
   public applicant: Applicant;
-  public phoneInterview: string;
-  public tech: string;
-  public finance: string;
+  public telephoneinterview:HireprocessTaskinfo;
+  public techinterview:HireprocessTaskinfo;
+  public financialnegotiation:HireprocessTaskinfo;
 
   constructor();
   constructor(
     processid:Number,
     applicant: Applicant,
-    phoneInterview: string,
-    tech: string,
-    finance: string);
+    telephoneinterview: HireprocessTaskinfo,
+    techinterview: HireprocessTaskinfo,
+    financialnegotiation: HireprocessTaskinfo);
   constructor(
     processid?:Number,
     applicant?: Applicant,
-    phoneInterview?: string,
-    tech?: string,
-    finance?: string)
+    telephoneinterview?: HireprocessTaskinfo,
+    techinterview?: HireprocessTaskinfo,
+    financialnegotiation?: HireprocessTaskinfo)
     {
       this.processid=processid;
       this.applicant=applicant;
-      this.phoneInterview=phoneInterview;
-      this.tech=tech;
-      this.finance=finance;
+      this.telephoneinterview=telephoneinterview;
+      this.techinterview=techinterview;
+      this.financialnegotiation=financialnegotiation;
     }
 }
