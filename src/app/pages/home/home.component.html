@@ -1,18 +1,67 @@
-<div class="card  bg" >
-  <div class="card-body"> 
-    <div>
-        <div class="title">
-            <label class="HEADLINE">Millions of jobs and people hiring</label>
-        </div>
-        <div>
-            <nb-card class="card1" accent="info">
-              <nb-card-header>Jobs</nb-card-header>
-              <nb-card-body>
-                  <label class="label">Find a job in Tehran</label>
-                  <button class="btn btn-primary button" [routerLink]="['/pages/hireprocess/jobs', 'tehran', 'all']">Find</button>
-              </nb-card-body>
-            </nb-card>
-        </div>
-    </div>         
+<div class="container">
+
+  <slideshow [height]="height"
+  [minHeight]="'600px'"
+  [autoPlay]="true"
+  [showArrows]="true"
+  [showDots] = "true"
+  [imageUrls]="imageSources"
+  [lazyLoad]="imageSources?.length > 1"
+  [autoPlayWaitForLazyLoad]="true">
+  </slideshow>
+
+  <div class="row col-md-12">
+
+    <div class="card-body"> 
+      <nb-card class="card1" accent="info">
+        <nb-card-header>Jobs</nb-card-header>
+        <nb-card-body>
+            <label >Find a job in Tehran</label>
+            <button class="btn btn-primary" [routerLink]="['/pages/hireprocess/jobs', 'tehran', 'all']">Find</button>
+        </nb-card-body>
+      </nb-card> 
+    </div>
+
+    <div class="card-body"> 
+      <nb-card class="card1" accent="info">
+        <nb-card-header>Jobs</nb-card-header>
+        <nb-card-body>
+            <label >Find a job in Esfahan</label>
+            <button class="btn btn-primary" [routerLink]="['/pages/hireprocess/jobs', 'esfahan', 'all']">Find</button>
+        </nb-card-body>
+      </nb-card>     
+    </div>
+
+    <div class="card-body"> 
+      <nb-card class="card1" accent="info">
+        <nb-card-header>Jobs</nb-card-header>
+        <nb-card-body>
+            <label >Find a job in Shiraz</label>
+            <button class="btn btn-primary" [routerLink]="['/pages/hireprocess/jobs', 'shiraz', 'all']">Find</button>
+        </nb-card-body>
+      </nb-card>     
+    </div>
+
+    <div class="card-body"> 
+      <nb-card class="card1" accent="info">
+        <nb-card-header>Jobs</nb-card-header>
+        <nb-card-body>
+            <label>Find Java developer jobs</label>
+            <button class="btn btn-primary" [routerLink]="['/pages/hireprocess/jobs', 'all', 'java developer']">Find</button>
+        </nb-card-body>
+      </nb-card>     
+    </div>
+
+    <div class="card-body"> 
+        <nb-card class="card1" accent="info">
+          <nb-card-header>Jobs</nb-card-header>
+          <nb-card-body>
+              <label>Find .Net developer jobs</label>
+              <button class="btn btn-primary" [routerLink]="['/pages/hireprocess/jobs', 'all', '.net developer']">Find</button>
+          </nb-card-body>
+        </nb-card>     
+      </div>
+
   </div>
+
 </div>
